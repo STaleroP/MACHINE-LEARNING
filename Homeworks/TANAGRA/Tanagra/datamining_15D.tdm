@@ -1,0 +1,120 @@
+[Diagram]
+Title=datamining
+Database=U:\OneDrive - Universidad Distrital Francisco José de Caldas\Universidad\7mo SEMESTRE\MINERÍA DE DATOS\Exposición Tanagra\Tanagra\DatosRegresion15D.xls
+
+[Dataset]
+MLClassGenerator=TMLGenDataset
+successors=6
+succ_1=Define status 1
+succ_2=Define status 2
+succ_3=Define status 3
+succ_4=View dataset 1
+succ_5=View multiple scatterplot 1
+succ_6=Scatterplot 1
+
+[Define status 1]
+MLClassGenerator=TMLGenFSDefStatus
+target_count=1
+target_1=estudios
+input_count=2
+input_1=ingresos
+input_2=edad
+illus_count=0
+successors=2
+succ_1=C-RT Regression tree 1
+succ_2=Regression tree 1
+
+[C-RT Regression tree 1]
+MLClassGenerator=TMLGenRegTreeCART
+rnd_generator=1
+show_anova=0
+max_clusters=100
+normalization=0
+size_before_split=5
+size_leaves=1
+max_depth=10
+goodness_threshold=0
+se_rule=1
+pruning_size=33
+show_all_sequence=0
+successors=0
+
+[Regression tree 1]
+MLClassGenerator=TMLGenRegTree
+rnd_generator=1
+show_anova=0
+max_clusters=50
+normalization=0
+size_before_split=5
+size_leaves=2
+max_depth=10
+goodness_threshold=0
+pruning_set_size=33
+delta=0,001
+show_all_sequence=0
+successors=0
+
+[Define status 2]
+MLClassGenerator=TMLGenFSDefStatus
+target_count=1
+target_1=consumo
+input_count=10
+input_1=ingresos
+input_2=habitantes
+input_3=potencia
+input_4=casa
+input_5=edad
+input_6=soltero
+input_7=casado
+input_8=separado
+input_9=viudo
+input_10=estudios
+illus_count=0
+successors=1
+succ_1=Multiple linear regression 1
+
+[Multiple linear regression 1]
+MLClassGenerator=TGenRegMultiple
+constant=1
+successors=0
+
+[Define status 3]
+MLClassGenerator=TMLGenFSDefStatus
+target_count=1
+target_1=soltero
+input_count=2
+input_1=ingresos
+input_2=consumo
+illus_count=0
+successors=1
+succ_1=Supervised Learning 1 (SVM)
+
+[Supervised Learning 1 (SVM)]
+MLClassGenerator=TMLGCompOneInstance
+embedded_spv=1
+embedded_section=Supervised Learning 1 (SVM)--SVM
+successors=0
+
+[Supervised Learning 1 (SVM)--SVM]
+MLClassGenerator=TMLGCompSpvSVM
+exponent=1
+filter_type=1
+poly_space_normalization=0
+use_rbf=0
+gamma=0,01
+complexity=1
+epsilon=1E-12
+tolerance=0,001
+
+[View dataset 1]
+MLClassGenerator=TMLGenCompViewData
+successors=0
+
+[View multiple scatterplot 1]
+MLClassGenerator=TMLGenCompMultipleScatter
+successors=0
+
+[Scatterplot 1]
+MLClassGenerator=TMLGenCompScatterPlot
+successors=0
+
